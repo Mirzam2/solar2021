@@ -4,6 +4,7 @@
 from solar_objects import Star, Planet
 from solar_vis import DrawableObject
 
+
 def read_space_objects_data_from_file(input_filename):
     """Cчитывает данные о космических объектах из файла, создаёт сами объекты
     и вызывает создание их графических образов
@@ -54,13 +55,14 @@ def parse_unit_parameters(line, unit):
     **star** — объект звезды.
     """
     line_fix = line.split()
-    unit.R = line_fix[1]
+    unit.R = int(line_fix[1])
     unit.color = line_fix[2]
-    unit.m = line_fix[3]
-    unit.x = line_fix[4]
-    unit.y = line_fix[5]
-    unit.Vx = line_fix[6]
-    unit.Vy = line_fix[7]
+    unit.m = float(line_fix[3])
+    unit.x = float(line_fix[4])
+    unit.y = float(line_fix[5])
+    unit.Vx = float(line_fix[6])
+    unit.Vy = float(line_fix[7])
+
 
 def write_space_objects_data_to_file(output_filename, space_objects):
     """Сохраняет данные о космических объектах в файл.
