@@ -3,6 +3,7 @@
 
 from solar_objects import Star, Planet
 from solar_vis import DrawableObject
+import json
 
 
 def read_space_objects_data_from_file(input_filename):
@@ -79,11 +80,20 @@ def write_space_objects_data_to_file(output_filename, space_objects):
 
     **space_objects** — список объектов планет и звёзд
     """
-    with open(output_filename, 'w') as out_file:
-        for obj in space_objects:
-            print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
-            # FIXME!
 
+    with open(output_filename, 'w') as out_file:
+        pass
+        for obj in space_objects:
+            pass
+            # FIXME
+def saving_data_to_an_list(list,space_object,main_object,time):
+    """Сохраняет данные о звездах в массив
+    list - массив в которой надо
+    space_objects - данные чего нужно сохранять
+    """
+    v = (space_object.vx ** 2 + space_object ** 2)**0.5
+    r = ((space_object.x - main_object.x) ** 2 + (space_object.x - main_object.x) ** 2) ** 0.5
+    list = list.append([time, v, r])
 
 if __name__ == "__main__":
     print("This module is not for direct call!")
