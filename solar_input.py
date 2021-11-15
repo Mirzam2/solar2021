@@ -65,27 +65,14 @@ def parse_unit_parameters(line, unit):
     unit.Vy = float(line_fix[7])
 
 
-def write_space_objects_data_to_file(output_filename, space_objects):
+def write_space_objects_data_to_file(output_filename, list):
     """Сохраняет данные о космических объектах в файл.
-
-    Строки должны иметь следующий формат:
-
-    Star <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
-
-    Planet <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
-
-    Параметры:
-
     **output_filename** — имя входного файла
-
-    **space_objects** — список объектов планет и звёзд
+    **list** — список данных которые нужно сохранить
     """
-
     with open(output_filename, 'w') as out_file:
-        pass
-        for obj in space_objects:
-            pass
-            # FIXME
+        json.dump(list, out_file)
+
 def saving_data_to_an_list(list,space_object,main_object,time):
     """Сохраняет данные о звездах в массив
     list - массив в которой надо
