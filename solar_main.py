@@ -6,12 +6,14 @@ from solar_vis import *
 from solar_model import *
 from solar_input import *
 from solar_objects import *
+from solar_plot import *
 import thorpy
 import time
+import os
 import numpy as np
 
 timer = None
-
+data = []
 alive = True
 
 perform_execution = False
@@ -74,20 +76,19 @@ def open_file():
     global space_objects
     global browser
     global model_time
-    global files
     global screen
-
-    model_time = 0.0
-<<<<<<< HEAD
-<<<<<<< HEAD
     
-    in_filename = "double_star.txt"
-=======
-    in_filename = r"./solar_system.txt"
->>>>>>> 794b5c629c6a14728aa0b4aa3d390096ce0901ba
-=======
-    in_filename = "solar_system.txt"
->>>>>>> 17d191442722d9b81bf604921faccdbb5d79724b
+    files =[]
+    model_time = 0.0
+    contents = os.listdir()
+    for item in contents:
+        if item.endswith('txt'):
+            files.append(item)
+    for i in range(len(files)):
+        print((i+1), files[i])
+    print('witch number')
+    x = int(input())
+    in_filename = files[x-1]
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.obj.x), abs(obj.obj.y))
                        for obj in space_objects])
@@ -119,6 +120,7 @@ def init_ui(screen):
     button_pause = thorpy.make_button("Pause", func=pause_execution)
     button_play = thorpy.make_button("Play", func=start_execution)
     timer = thorpy.OneLineText("Seconds passed")
+    data
 
     button_load = thorpy.make_button(text="Load a file", func=open_file)
 
@@ -188,6 +190,7 @@ def main():
         time.sleep(1.0 / 60)
 
     print('Modelling finished!')
+
 
 
 if __name__ == "__main__":
