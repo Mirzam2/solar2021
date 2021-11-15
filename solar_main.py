@@ -188,8 +188,12 @@ def main():
         if len(space_objects) != 0:
             saving_data_to_an_list(data, space_objects[0], space_objects[1],int(model_time))
         time.sleep(1.0 / 60)
+<<<<<<< HEAD
     pg.quit()
 
+=======
+    
+>>>>>>> 0b829e4d4a1eec67314126cd526cb962f344b7be
     print('Modelling finished!')
     go_plot(data)
     
