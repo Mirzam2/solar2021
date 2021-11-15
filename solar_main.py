@@ -6,12 +6,14 @@ from solar_vis import *
 from solar_model import *
 from solar_input import *
 from solar_objects import *
+from solar_plot import *
 import thorpy
 import time
+import os
 import numpy as np
 
 timer = None
-
+data = []
 alive = True
 
 perform_execution = False
@@ -27,6 +29,9 @@ time_scale = 1000.0
 
 space_objects = []
 """Список космических объектов."""
+
+files = []
+"""Список файлов"""
 
 
 def execution(delta):
@@ -71,9 +76,19 @@ def open_file():
     global space_objects
     global browser
     global model_time
-
+    global screen
+    
+    files =[]
     model_time = 0.0
-    in_filename = "solar_system.txt"
+    contents = os.listdir()
+    for item in contents:
+        if item.endswith('txt'):
+            files.append(item)
+    for i in range(len(files)):
+        print((i+1), files[i])
+    print('witch number')
+    x = int(input())
+    in_filename = files[x-1]
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.obj.x), abs(obj.obj.y))
                        for obj in space_objects])
@@ -105,8 +120,10 @@ def init_ui(screen):
     button_pause = thorpy.make_button("Pause", func=pause_execution)
     button_play = thorpy.make_button("Play", func=start_execution)
     timer = thorpy.OneLineText("Seconds passed")
+    data
 
     button_load = thorpy.make_button(text="Load a file", func=open_file)
+
 
     box = thorpy.Box(elements=[
         slider,
@@ -173,6 +190,7 @@ def main():
         time.sleep(1.0 / 60)
     
     print('Modelling finished!')
+
 
 
 if __name__ == "__main__":
