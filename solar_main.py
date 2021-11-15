@@ -28,6 +28,9 @@ time_scale = 1000.0
 space_objects = []
 """Список космических объектов."""
 
+files = []
+"""Список файлов"""
+
 
 def execution(delta):
     """Функция исполнения -- выполняется циклически, вызывая обработку всех небесных тел,
@@ -71,9 +74,12 @@ def open_file():
     global space_objects
     global browser
     global model_time
+    global files
+    global screen
 
     model_time = 0.0
-    in_filename = "solar_system.txt"
+    
+    in_filename = "double_star.txt"
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.obj.x), abs(obj.obj.y))
                        for obj in space_objects])
@@ -107,6 +113,7 @@ def init_ui(screen):
     timer = thorpy.OneLineText("Seconds passed")
 
     button_load = thorpy.make_button(text="Load a file", func=open_file)
+
 
     box = thorpy.Box(elements=[
         slider,
