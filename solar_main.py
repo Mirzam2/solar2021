@@ -11,6 +11,7 @@ import thorpy
 import time
 import os
 import numpy as np
+import matplotlib.pyplot as plt
 
 timer = None
 data = []
@@ -29,9 +30,6 @@ time_scale = 1000.0
 
 space_objects = []
 """Список космических объектов."""
-
-files = []
-"""Список файлов"""
 
 
 def execution(delta):
@@ -76,7 +74,7 @@ def open_file():
     global space_objects
     global browser
     global model_time
-    global screen
+    global timer
     
     files =[]
     model_time = 0.0
@@ -120,7 +118,6 @@ def init_ui(screen):
     button_pause = thorpy.make_button("Pause", func=pause_execution)
     button_play = thorpy.make_button("Play", func=start_execution)
     timer = thorpy.OneLineText("Seconds passed")
-    data
 
     button_load = thorpy.make_button(text="Load a file", func=open_file)
 
@@ -159,10 +156,12 @@ def main():
     global displayed_time
     global time_step
     global time_speed
+    global space_objects
     global space
     global start_button
     global perform_execution
     global timer
+    global data
 
     print('Modelling started!')
     physical_time = 0
@@ -184,13 +183,16 @@ def main():
             execution((cur_time - last_time) * time_scale)
             text = "%d seconds passed" % (int(model_time))
             timer.set_text(text)
-
         last_time = cur_time
         drawer.update(space_objects, box)
+        if len(space_objects) != 0:
+            saving_data_to_an_list(data, space_objects[0], space_objects[1],int(model_time))
         time.sleep(1.0 / 60)
+    pg.quit()
 
     print('Modelling finished!')
-
+    go_plot(data)
+    
 
 
 if __name__ == "__main__":

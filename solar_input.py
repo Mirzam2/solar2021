@@ -78,8 +78,8 @@ def saving_data_to_an_list(list,space_object,main_object,time):
     list - массив в которой надо
     space_objects - данные чего нужно сохранять
     """
-    v = (space_object.vx ** 2 + space_object ** 2)**0.5
-    r = ((space_object.x - main_object.x) ** 2 + (space_object.x - main_object.x) ** 2) ** 0.5
+    v = (space_object.obj.Vx ** 2 + space_object.obj.Vy ** 2)**0.5
+    r = ((space_object.obj.x - main_object.obj.x) ** 2 + (space_object.obj.y - main_object.obj.y) ** 2) ** 0.5
     list = list.append([time, v, r])
 
 if __name__ == "__main__":
