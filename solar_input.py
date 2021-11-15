@@ -3,6 +3,7 @@
 
 from solar_objects import Star, Planet
 from solar_vis import DrawableObject
+import json
 
 
 def read_space_objects_data_from_file(input_filename):
@@ -55,7 +56,7 @@ def parse_unit_parameters(line, unit):
     **star** — объект звезды.
     """
     line_fix = line.split()
-    unit.R = int(line_fix[1])
+    unit.R = float(line_fix[1])
     unit.color = line_fix[2]
     unit.m = float(line_fix[3])
     unit.x = float(line_fix[4])
@@ -64,26 +65,22 @@ def parse_unit_parameters(line, unit):
     unit.Vy = float(line_fix[7])
 
 
-def write_space_objects_data_to_file(output_filename, space_objects):
+def write_space_objects_data_to_file(output_filename, list):
     """Сохраняет данные о космических объектах в файл.
-
-    Строки должны иметь следующий формат:
-
-    Star <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
-
-    Planet <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
-
-    Параметры:
-
     **output_filename** — имя входного файла
-
-    **space_objects** — список объектов планет и звёзд
+    **list** — список данных которые нужно сохранить
     """
     with open(output_filename, 'w') as out_file:
-        for obj in space_objects:
-            print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
-            # FIXME!
+        json.dump(list, out_file)
 
+def saving_data_to_an_list(list,space_object,main_object,time):
+    """Сохраняет данные о звездах в массив
+    list - массив в которой надо
+    space_objects - данные чего нужно сохранять
+    """
+    v = (space_object.vx ** 2 + space_object ** 2)**0.5
+    r = ((space_object.x - main_object.x) ** 2 + (space_object.x - main_object.x) ** 2) ** 0.5
+    list = list.append([time, v, r])
 
 if __name__ == "__main__":
     print("This module is not for direct call!")

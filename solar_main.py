@@ -78,8 +78,12 @@ def open_file():
     global screen
 
     model_time = 0.0
+<<<<<<< HEAD
     
     in_filename = "double_star.txt"
+=======
+    in_filename = r"./solar_system.txt"
+>>>>>>> 794b5c629c6a14728aa0b4aa3d390096ce0901ba
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.obj.x), abs(obj.obj.y))
                        for obj in space_objects])
