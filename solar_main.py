@@ -186,17 +186,20 @@ def main():
         last_time = cur_time
         drawer.update(space_objects, box)
         if len(space_objects) != 0:
-            saving_data_to_an_list(data, space_objects[0], space_objects[1],int(model_time))
-        time.sleep(1.0 / 60)
-<<<<<<< HEAD
-    pg.quit()
+            saving_data_to_an_list(data, space_objects[0], space_objects[1],int(model_time) * 10 ** (-6))
 
-=======
-    
->>>>>>> 0b829e4d4a1eec67314126cd526cb962f344b7be
+    pg.quit()
     print('Modelling finished!')
+    with open(r'waste_time.txt','w') as f:
+        f.write('')
+    for i in data:
+        stroka = str(i[0]) + ' ' + str(i[1]) + ' ' + str(i[2]) + '\n'
+        with open(r'waste_time.txt','a') as f:
+            f.write(stroka)
+    data = data[::-1]
+    data = data[:8000:]
+    data = data[::-1]
     go_plot(data)
-    
 
 
 if __name__ == "__main__":
